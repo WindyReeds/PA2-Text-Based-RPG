@@ -15,6 +15,11 @@ private:
     // TODO 6: how many scenes are in the story that starts at scene?
     // An empty story has 0 scenes.
     int countScenes(Scene<T>* scene) const {
+
+        for (int i = 0; i < scene->getNumChoices(); i++) {
+            //
+        }
+
         return 0;
     }
 

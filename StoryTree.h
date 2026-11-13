@@ -1,4 +1,6 @@
 #pragma once
+#include <algorithm>
+
 #include "Scene.h"
 
 // The whole story. It knows the first scene and nothing else.
@@ -40,12 +42,23 @@ private:
     // starting at scene. A single ending scene has height 0.
     // An empty story has height -1.
     int height(Scene<T>* scene) const {
-        int maxHeight = -1;
-        if (scene->getNumChoices() > 0) {
-            //
+        if (scene->getData() == nullptr) {
+            return -1;
+        }
+        if (scene->getNumChoices() == 0) {
+            return 0;
         }
 
-        return maxHeight;
+        // Recursively traverse each branch. No branch = 0.
+        int height[3] = { 0,0,0 };
+        for (int i = 0; i < scene->getNumChoices(); i++) {
+            height[i] = height[scene->getChoice(i)];
+        }
+
+        // Tally +1 for each non-ending scene, then return max of 3 branches.
+        int maxHeight = std::max(height[0], height[1]);
+        maxHeight = std::max(maxHeight, height[2]);
+        return maxHeight + 1;
     }
 
 public:

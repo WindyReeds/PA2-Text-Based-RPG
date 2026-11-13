@@ -15,24 +15,37 @@ private:
     // TODO 6: how many scenes are in the story that starts at scene?
     // An empty story has 0 scenes.
     int countScenes(Scene<T>* scene) const {
-
-        for (int i = 0; i < scene->getNumChoices(); i++) {
-            //
+        if (scene->getData() == nullptr) {
+            return 1;
         }
-
-        return 0;
+        for (int i = 0; i < scene->getNumChoices(); i++) {
+            return 1 + countScenes(scene->getChoice(i));
+        }
     }
 
     // TODO 7: how many endings are in the story that starts at scene?
     int countEndings(Scene<T>* scene) const {
-        return 0;
+        if (scene->getData() == nullptr) {
+            return 0;
+        }
+        if (scene->getNumChoices() == 0) {
+            return 1;
+        }
+        for (int i = 0; i < scene->getNumChoices(); i++) {
+            return countScenes(scene->getChoice(i));
+        }
     }
 
     // TODO 8: the most choices a player can make on the way to an ending,
     // starting at scene. A single ending scene has height 0.
     // An empty story has height -1.
     int height(Scene<T>* scene) const {
-        return -1;
+        int maxHeight = -1;
+        if (scene->getNumChoices() > 0) {
+            //
+        }
+
+        return maxHeight;
     }
 
 public:

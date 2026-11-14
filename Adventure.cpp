@@ -85,7 +85,19 @@ bool Adventure::load(const std::string& fileName) {
 //   - If anything goes wrong at any depth, return nullptr
 //     and make sure nothing you already built is leaked.
 Scene<Moment>* Adventure::readScene(std::ifstream& in, const std::string& label) {
-    return nullptr;
+    std::string scene, hpChange, loot, item, choices;
+    readField(in, "SCENE", scene);
+    readField(in, "HP", hpChange);
+    readField(in, "LOOT", loot);
+    readField(in, "ITEM", item);
+    readField(in, "CHOICES", choices);
+    if (std::stoi(choices) < 0 || std::stoi(choices) > 3) {
+        std::cout << "Error: scene \"<scene text>\" has " << std::stoi(choices) << " choices. The limit is 3." << std::endl;
+        return nullptr;
+    }
+
+    Moment moment = Moment(scene, label, std::stoi(hpChange), std::stoi(loot), item);
+    return moment;
 }
 
 // ===================== PLAYING =====================

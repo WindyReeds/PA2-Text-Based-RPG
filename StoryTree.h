@@ -18,7 +18,7 @@ private:
     // An empty story has 0 scenes.
     int countScenes(Scene<T>* scene) const {
         if (scene->getData() == nullptr) {
-            return 1;
+            return 0;
         }
         for (int i = 0; i < scene->getNumChoices(); i++) {
             return 1 + countScenes(scene->getChoice(i));
@@ -30,12 +30,14 @@ private:
         if (scene->getData() == nullptr) {
             return 0;
         }
+        int total = 0;
         if (scene->getNumChoices() == 0) {
             return 1;
         }
         for (int i = 0; i < scene->getNumChoices(); i++) {
-            return countScenes(scene->getChoice(i));
+            total += countScenes(scene->getChoice(i));
         }
+        return total;
     }
 
     // TODO 8: the most choices a player can make on the way to an ending,
@@ -49,7 +51,7 @@ private:
             return 0;
         }
 
-        // Recursively traverse each branch. No branch = 0.
+        // Recursively traverse each branch. No branch at i = 0.
         int height[3] = { 0,0,0 };
         for (int i = 0; i < scene->getNumChoices(); i++) {
             height[i] = height[scene->getChoice(i)];
@@ -84,6 +86,18 @@ public:
     // TODO 9: free every scene in the story and leave the tree empty.
     // Hint: what does deleting a Scene already do for you?
     void clear() {
+        Scene<T>* &scene = root_;
+        if (scene->getData() == nullptr) {
+            return;
+        }
+        if (scene->getNumChoices() == 0) {
+            delete scene;
+            scene = nullptr;
+        }
+        for (int i = 0; i < scene->getNumChoices(); i++) {
+            scene = scene->getChoice(i);
+            delete scene;
+        }
     }
 
     int countScenes() const {

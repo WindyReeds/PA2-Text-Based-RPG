@@ -39,7 +39,10 @@ public:
         // Think about what it owns, and what each slot points to.
 
         delete data_;
-        delete choices_;
+        delete[] choices_;
+        data_ = nullptr;
+        choices_ = nullptr;
+        numChoices_ = 0;
     }
 
     T* getData() const {

@@ -202,6 +202,9 @@ void Adventure::printStats() const {
 
 // TODO 15: print every ending in the story, one per line.
 void Adventure::printSpoilers() const {
+    for (int i = 0; i < tree_.countEndings(); i++) {
+        //
+    }
 }
 
 // TODO 16: print every ending below scene.
@@ -211,6 +214,7 @@ void Adventure::printSpoilers() const {
 // If the very first scene is an ending, print "Path (start): <scene text>".
 // Endings print in order: choice 1 before choice 2 before choice 3.
 void Adventure::printEndings(Scene<Moment>* scene, const std::string& path) const {
+    //
 }
 
 // TODO 17: the greedy advisor.
@@ -225,6 +229,7 @@ void Adventure::printEndings(Scene<Moment>* scene, const std::string& path) cons
 //     Loot: <loot>
 //     Result: died               (or "Result: reached an ending")
 void Adventure::greedyRun() const {
+    //
 }
 
 // TODO 18: the best total loot you can collect from scene down to an ending,
@@ -234,6 +239,7 @@ void Adventure::greedyRun() const {
 //   - Must be recursive and look at every choice.
 int Adventure::bestLoot(Scene<Moment>* scene, int hp, const std::string& path, std::string& bestPath) const {
     return -1;
+    //
 }
 
 // TODO 19: the optimal advisor. Use bestLoot from the first scene.
@@ -246,4 +252,5 @@ int Adventure::bestLoot(Scene<Moment>* scene, int hp, const std::string& path, s
 //   Optimal advisor
 //     Result: no path survives this story
 void Adventure::optimalRun() const {
+    //
 }

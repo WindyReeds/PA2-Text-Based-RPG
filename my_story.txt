@@ -1,12 +1,45 @@
 START_HP 10
-SCENE Here you are at last, the land of opportunity. Armed with just the clothes on your back and a cool $100, you're determined to make your dreams come true. Ahead lies //. A stout man in a bandana is beckoning you.
+SCENE Here you are at last, the land of opportunity. Armed with just the clothes on your back and a cool $100, you're determined to make your dreams come true. Ahead lies a dilapidated employment office. A stout man in a bandana beckons you from behind a dumpster.
 HP 0
 LOOT 100
 ITEM none
-CHOICES 3
-
-
-
+CHOICES 2
+LABEL Avoid eye contact
+    SCENE You step into one of the offices. A smiley clerk hands you a very short list of job positions. The building smells of disappointment and smoke.
+    HP 0
+    LOOT 0
+    ITEM none
+    CHOICES 3
+    LABEL I'll take the construction job
+        SCENE You die while laying cement for a Walmart. You don't get a plaque because that would scare the customers.
+        HP -10
+        LOOT 300
+        ITEM none
+        CHOICES 0
+    LABEL I'll take the retail job
+        SCENE Retail seems safe enough. If only it paid enough that you could buy the things you sell.
+        HP 0
+        LOOT 200
+        ITEM none
+        CHOICES 2
+        LABEL Work hard
+            SCENE You flop onto the couch after a long day. Your manager is calling. "Yeahhh, we had to make some cuts so if you could just do the work of three people from now on, that'd be greeeat." You are living the dream.
+            HP -5
+            LOOT 200
+            ITEM none
+            CHOICES 0
+        LABEL Hardly work
+            SCENE The CEO calls a company-wide meeting over Zoom. You're all fired.
+            HP 0
+            LOOT 0
+            ITEM none
+            CHOICES 0
+    LABEL Wait, smoke?
+        SCENE You find that the microwave in the break room has exploded. Thanks to your heroics, the only casualties are the years shaved off your life. The city gives you a medal, but they don't give you a job.
+        HP -5
+        LOOT 0
+        ITEM Medal
+        CHOICES 0
 LABEL Approach the bandana man
     SCENE The man straightens up and gives you a confident smile. He inquires, "Would you rather have $1... or $2?"
     HP 0
@@ -20,26 +53,44 @@ LABEL Approach the bandana man
         ITEM none
         CHOICES 1
         LABEL Oops
-            SCENE You've really bungled this one. Just absolutely forked it up. //
+            SCENE But what's this? It seems the man slipped a handwritten note into your pocket. It's a drawing of himself.
             HP 0
             LOOT 0
-            ITEM none
-            CHOICES 0
+            ITEM Self-portrait
+            CHOICES 2
+            LABEL Sell it
+                SCENE Selling art? In this economy? You starve on the street.
+                HP -10
+                LOOT 0
+                ITEM none
+                CHOICES 0
+            LABEL Burn it
+                SCENE You burn the drawing and hear a distant scream. You feel a little better.
+                HP 0
+                LOOT 0
+                ITEM none
+                CHOICES 0
     LABEL $2
-         SCENE $2 sounds pretty good to you. You reach out your hands. He speaks, "This is the greed they warned us about in the Bible." He takes all of your money, leaving you with $2.
+         SCENE $2 sounds pretty good to you. You reach out your hands and he speaks, "This is the greed they warned us about in the Bible." He takes all of your money, leaving you with $2.
          HP 0
          LOOT -98
          ITEM none
          CHOICES 1
          LABEL Oops
-             SCENE You've really bungled this one. Just absolutely forked it up. //
-             HP 0
-             LOOT 0
+             SCENE You've really bungled this one. Just absolutely forked it up. You burn your last dollars for warmth in the night.
+             HP -10
+             LOOT -2
              ITEM none
              CHOICES 0
-    LABEL I reject the premises of the question
-         SCENE //
+    LABEL I reject the premise of the question
+         SCENE The man is taken aback. "What?" he says. "What? What?" you repeat in a mocking tone, making an opening and shutting motion with your hand. You leave him there to toil in ignorance.
          HP 0
          LOOT 0
          ITEM none
-         CHOICES 0
+         CHOICES 1
+         LABEL This is my calling
+             SCENE You become a moderately successful debate bro. You spend your days accidentally platforming the most annoying people you know.
+             HP 0
+             LOOT 500
+             ITEM none
+             CHOICES 0

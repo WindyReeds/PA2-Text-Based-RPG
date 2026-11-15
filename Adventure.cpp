@@ -97,10 +97,13 @@ Scene<Moment>* Adventure::readScene(std::ifstream& in, const std::string& label)
         return nullptr;
     }
     readField(in, "LABEL", nextLabel);
-    readScene(in, nextLabel);   // Read next scene
+    if (std::stoi(choices) > 0) {
+        readScene(in, nextLabel);   // Read next scene
+    }
 
-    Moment moment = Moment(scene, label, std::stoi(hpChange), std::stoi(loot), item);
-    return moment;
+    Moment *moment = new Moment(scene, label, std::stoi(hpChange), std::stoi(loot), item);
+    Scene<Moment>* sceneMoment = new Scene(moment, std::stoi(choices));
+    return sceneMoment;
 }
 
 // ===================== PLAYING =====================

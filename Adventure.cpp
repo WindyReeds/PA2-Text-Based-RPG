@@ -145,8 +145,9 @@ void Adventure::play() {
     int hp = startHp_;
     int loot = 0;
     List<Item>* items = new List<Item>();
-    Scene<Moment>* sceneMoment = new Scene<Moment>(tree_.getRoot(), tree_.);
 
+    // Fix
+    Scene<Moment>* sceneMoment = new Scene<Moment>(tree_.getRoot(), tree_.);
     hp = tree_.getRoot()->getHpChange();
     loot = tree_.getRoot()->getLoot();
 
@@ -162,19 +163,24 @@ void Adventure::play() {
     std::cout << "HP: " << hp << "  Loot: " << loot << std::endl;
     if (hp <= 0) {
         std::cout << "Your HP hit 0. GAME OVER." << std::endl;
+        std::cout << "Final HP: " << hp << "  Final loot: " << loot << std::endl;
+        std::cout << "Inventory (" << items->size() << ")" << std::endl;
+        items->print();
+        return;
     }
     if (tree_.isEnding()) {
         std::cout << "THE END." << std::endl;
+        std::cout << "Final HP: " << hp << "  Final loot: " << loot << std::endl;
+        std::cout << "Inventory (" << items->size() << ")" << std::endl;
+        items->print();
+        return;
     }
 
-
-
-
-
-
-
+    // Fix
+    std::cout << "[1] " << tree_.getRoot()->getLabel() << std::endl;
     askChoice(1);
 
+    // Put in different method?
     std::string nextLabel;
     readField(in, "LABEL", nextLabel);
     if (std::stoi(choices) > 0) {
@@ -189,6 +195,9 @@ void Adventure::play() {
 //   Endings: <count>
 //   Longest playthrough: <height> choices
 void Adventure::printStats() const {
+    std::cout << tree_.countScenes() << std::endl;
+    std::cout << tree_.countEndings() << std::endl;
+    std::cout << tree_.height() << std::endl;
 }
 
 // TODO 15: print every ending in the story, one per line.

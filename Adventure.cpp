@@ -73,7 +73,8 @@ bool Adventure::load(const std::string& fileName) {
     std::string startHp;
     readField(file, "START_HP", startHp);
     startHp_ = std::stoi(startHp);
-    //
+
+    readScene(file, "START");
 }
 
 // TODO 11: read ONE scene and everything below it. Return it.
@@ -85,7 +86,7 @@ bool Adventure::load(const std::string& fileName) {
 //   - If anything goes wrong at any depth, return nullptr
 //     and make sure nothing you already built is leaked.
 Scene<Moment>* Adventure::readScene(std::ifstream& in, const std::string& label) {
-    std::string scene, hpChange, loot, item, choices;
+    std::string scene, hpChange, loot, item, choices, nextLabel;
     readField(in, "SCENE", scene);
     readField(in, "HP", hpChange);
     readField(in, "LOOT", loot);
@@ -95,6 +96,8 @@ Scene<Moment>* Adventure::readScene(std::ifstream& in, const std::string& label)
         std::cout << "Error: scene \"<scene text>\" has " << std::stoi(choices) << " choices. The limit is 3." << std::endl;
         return nullptr;
     }
+    readField(in, "LABEL", nextLabel);
+    readScene(in, nextLabel);   // Read next scene
 
     Moment moment = Moment(scene, label, std::stoi(hpChange), std::stoi(loot), item);
     return moment;

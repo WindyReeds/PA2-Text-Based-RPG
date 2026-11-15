@@ -1,6 +1,45 @@
 START_HP 10
-SCENE Replace this file with your own story.
+SCENE Here you are at last, the land of opportunity. Armed with just the clothes on your back and a cool $100, you're determined to make your dreams come true. Ahead lies //. A stout man in a bandana is beckoning you.
 HP 0
-LOOT 0
+LOOT 100
 ITEM none
-CHOICES 0
+CHOICES 3
+
+
+
+LABEL Approach the bandana man
+    SCENE The man straightens up and gives you a confident smile. He inquires, "Would you rather have $1... or $2?"
+    HP 0
+    LOOT 0
+    ITEM none
+    CHOICES 3
+    LABEL $1
+        SCENE Your humility will only permit you to accept a single dollar. You tell him this, and he nods solemnly. "You are a kind soul. Thank you for your contribution." He takes all of your money, leaving you with $1.
+        HP 0
+        LOOT -99
+        ITEM none
+        CHOICES 1
+        LABEL Oops
+            SCENE You've really bungled this one. Just absolutely forked it up. //
+            HP 0
+            LOOT 0
+            ITEM none
+            CHOICES 0
+    LABEL $2
+         SCENE $2 sounds pretty good to you. You reach out your hands. He speaks, "This is the greed they warned us about in the Bible." He takes all of your money, leaving you with $2.
+         HP 0
+         LOOT -98
+         ITEM none
+         CHOICES 1
+         LABEL Oops
+             SCENE You've really bungled this one. Just absolutely forked it up. //
+             HP 0
+             LOOT 0
+             ITEM none
+             CHOICES 0
+    LABEL I reject the premises of the question
+         SCENE //
+         HP 0
+         LOOT 0
+         ITEM none
+         CHOICES 0

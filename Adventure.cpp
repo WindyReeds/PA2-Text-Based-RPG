@@ -1,4 +1,6 @@
 #include "Adventure.h"
+
+#include <iomanip>
 #include <iostream>
 
 // ===================== GIVEN HELPERS (do not change) =====================
@@ -73,8 +75,7 @@ bool Adventure::load(const std::string& fileName) {
     std::string startHp;
     readField(file, "START_HP", startHp);
     startHp_ = std::stoi(startHp);
-
-    readScene(file, "START");
+    tree_.setRoot(readScene(file, "START"));
 }
 
 // TODO 11: read ONE scene and everything below it. Return it.
@@ -86,7 +87,7 @@ bool Adventure::load(const std::string& fileName) {
 //   - If anything goes wrong at any depth, return nullptr
 //     and make sure nothing you already built is leaked.
 Scene<Moment>* Adventure::readScene(std::ifstream& in, const std::string& label) {
-    std::string scene, hpChange, loot, item, choices, nextLabel;
+    std::string scene, hpChange, loot, item, choices;
     readField(in, "SCENE", scene);
     readField(in, "HP", hpChange);
     readField(in, "LOOT", loot);
@@ -95,10 +96,6 @@ Scene<Moment>* Adventure::readScene(std::ifstream& in, const std::string& label)
     if (std::stoi(choices) < 0 || std::stoi(choices) > 3) {
         std::cout << "Error: scene \"<scene text>\" has " << std::stoi(choices) << " choices. The limit is 3." << std::endl;
         return nullptr;
-    }
-    readField(in, "LABEL", nextLabel);
-    if (std::stoi(choices) > 0) {
-        readScene(in, nextLabel);   // Read next scene
     }
 
     Moment *moment = new Moment(scene, label, std::stoi(hpChange), std::stoi(loot), item);
@@ -124,10 +121,7 @@ int Adventure::askChoice(int numChoices) {
         }
         std::cout << "Please type a number from 1 to <numChoices> and ask again." << std::endl;
     }
-    if () {
-        return 0;
-    }
-
+    return 0;
 }
 
 // TODO 13: play the story once from the start.
@@ -148,6 +142,44 @@ int Adventure::askChoice(int numChoices) {
 // and then print the bag.
 // The bag is a List<Item>. Start with HP = startHp_ and loot = 0.
 void Adventure::play() {
+    int hp = startHp_;
+    int loot = 0;
+    List<Item>* items = new List<Item>();
+    Scene<Moment>* sceneMoment = new Scene<Moment>(tree_.getRoot(), tree_.);
+
+    hp = tree_.getRoot()->getHpChange();
+    loot = tree_.getRoot()->getLoot();
+
+    std::cout << "----------------------------------------" << std::endl;
+    std::cout << tree_.getRoot()->getText() << std::endl;
+    if (tree_.getRoot()->getItem != "none") {
+        if (items->search(tree_.getRoot()->getItem())) {
+            std::cout << "You already have: " << tree_.getRoot()->getItem();
+        }
+        items->addFront(new Item(tree_.getRoot()->getItem()));
+        std::cout << "You picked up: " << tree_.getRoot()->getItem();
+    }
+    std::cout << "HP: " << hp << "  Loot: " << loot << std::endl;
+    if (hp <= 0) {
+        std::cout << "Your HP hit 0. GAME OVER." << std::endl;
+    }
+    if (tree_.isEnding()) {
+        std::cout << "THE END." << std::endl;
+    }
+
+
+
+
+
+
+
+    askChoice(1);
+
+    std::string nextLabel;
+    readField(in, "LABEL", nextLabel);
+    if (std::stoi(choices) > 0) {
+        readScene(in, nextLabel);   // Read next scene
+    }
 }
 
 // ===================== ANALYZING =====================

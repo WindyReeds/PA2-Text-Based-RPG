@@ -75,7 +75,7 @@ public:
         root_ = root;
     }
 
-    Scene<T>* getRoot() const {
+    Moment *getRoot() const {
         return root_;
     }
 

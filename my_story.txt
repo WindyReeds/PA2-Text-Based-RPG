@@ -1,5 +1,5 @@
 START_HP 10
-SCENE Here you are at last, the land of opportunity. Armed with just the clothes on your back and a cool $100, you're determined to make your dreams come true. Ahead lies a dilapidated employment office. A stout man in a bandana beckons you from behind a dumpster.
+START Here you are at last, the land of opportunity. Armed with just the clothes on your back and a cool $100, you're determined to make your dreams come true. Ahead lies a dilapidated employment office. A stout man in a bandana beckons to you from behind a dumpster.
 HP 0
 LOOT 100
 ITEM none
@@ -10,14 +10,14 @@ LABEL Avoid eye contact
     LOOT 0
     ITEM none
     CHOICES 3
-    LABEL I'll take the construction job
+    LABEL Take the construction job
         SCENE You die while laying cement for a Walmart. You don't get a plaque because that would scare the customers.
         HP -10
         LOOT 300
         ITEM none
         CHOICES 0
-    LABEL I'll take the retail job
-        SCENE Retail seems safe enough. If only it paid enough that you could buy the things you sell.
+    LABEL Take the retail job
+        SCENE Retail seems safe enough. If only you had enough to buy the things you sell.
         HP 0
         LOOT 200
         ITEM none
@@ -41,13 +41,13 @@ LABEL Avoid eye contact
         ITEM Medal
         CHOICES 0
 LABEL Approach the bandana man
-    SCENE The man straightens up and gives you a confident smile. He inquires, "Would you rather have $1... or $2?"
+    SCENE The man straightens up and gives you a confident smile. He inquires without a hint of irony, "Would you rather have $1... or $2?"
     HP 0
     LOOT 0
     ITEM none
     CHOICES 3
     LABEL $1
-        SCENE Your humility will only permit you to accept a single dollar. You tell him this, and he nods solemnly. "You are a kind soul. Thank you for your contribution." He takes all of your money, leaving you with $1.
+        SCENE Your humility will only permit you to accept a single dollar. You tell him this, and he nods solemnly. "You are a kind soul, thank you." He takes all of your money, leaving you with $1.
         HP 0
         LOOT -99
         ITEM none
@@ -71,7 +71,7 @@ LABEL Approach the bandana man
                 ITEM none
                 CHOICES 0
     LABEL $2
-         SCENE $2 sounds pretty good to you. You reach out your hands and he speaks, "This is the greed they warned us about in the Bible." He takes all of your money, leaving you with $2.
+         SCENE $2 sounds pretty good to you. You reach out your hands and he scowls, "This is the greed they warned us about in the Bible." He takes all of your money, leaving you with $2.
          HP 0
          LOOT -98
          ITEM none
@@ -89,7 +89,7 @@ LABEL Approach the bandana man
          ITEM none
          CHOICES 1
          LABEL This is my calling
-             SCENE You become a moderately successful debate bro. You spend your days accidentally platforming the most annoying people you know.
+             SCENE You become a moderately successful debate streamer. You spend your days accidentally platforming the most annoying people on the planet.
              HP 0
              LOOT 500
              ITEM none

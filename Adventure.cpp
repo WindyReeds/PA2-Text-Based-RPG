@@ -56,7 +56,7 @@ std::string Adventure::extendPath(const std::string& path, int choiceNumber) con
 
 // ===================== LOADING =====================
 
-// TODO 10: Fix
+// TODO 10: Done?
 // Open the story file and build the tree.
 //   - If the file will not open, print exactly:
 //       Error: could not open file <fileName>
@@ -104,10 +104,12 @@ Scene<Moment>* Adventure::readScene(std::ifstream& in, const std::string& label)
     Scene<Moment>* sceneMoment = new Scene(moment, std::stoi(choices));
     return sceneMoment;
 
+    // Read next scene
+    // Don't know where to put this
     std::string nextLabel;
-    readField(in, "LABEL", nextLabel);
     if (std::stoi(choices) > 0) {
-        readScene(in, nextLabel);   // Read next scene
+        readField(in, "LABEL", nextLabel);
+        readScene(in, nextLabel);
     }
 }
 

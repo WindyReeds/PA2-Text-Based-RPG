@@ -101,6 +101,12 @@ Scene<Moment>* Adventure::readScene(std::ifstream& in, const std::string& label)
     Moment *moment = new Moment(scene, label, std::stoi(hpChange), std::stoi(loot), item);
     Scene<Moment>* sceneMoment = new Scene(moment, std::stoi(choices));
     return sceneMoment;
+
+    std::string nextLabel;
+    readField(in, "LABEL", nextLabel);
+    if (std::stoi(choices) > 0) {
+        readScene(in, nextLabel);   // Read next scene
+    }
 }
 
 // ===================== PLAYING =====================
@@ -179,13 +185,6 @@ void Adventure::play() {
     // Fix
     std::cout << "[1] " << tree_.getRoot()->getLabel() << std::endl;
     askChoice(1);
-
-    // Put in different method?
-    std::string nextLabel;
-    readField(in, "LABEL", nextLabel);
-    if (std::stoi(choices) > 0) {
-        readScene(in, nextLabel);   // Read next scene
-    }
 }
 
 // ===================== ANALYZING =====================
@@ -195,9 +194,9 @@ void Adventure::play() {
 //   Endings: <count>
 //   Longest playthrough: <height> choices
 void Adventure::printStats() const {
-    std::cout << tree_.countScenes() << std::endl;
-    std::cout << tree_.countEndings() << std::endl;
-    std::cout << tree_.height() << std::endl;
+    std::cout << "Scenes: " << tree_.countScenes() << std::endl;
+    std::cout << "Endings: " << tree_.countEndings() << std::endl;
+    std::cout << "Longest playthrough: " << tree_.height() << " choices" << std::endl;
 }
 
 // TODO 15: print every ending in the story, one per line.

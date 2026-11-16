@@ -56,7 +56,8 @@ std::string Adventure::extendPath(const std::string& path, int choiceNumber) con
 
 // ===================== LOADING =====================
 
-// TODO 10: open the story file and build the tree.
+// TODO 10: Fix
+// Open the story file and build the tree.
 //   - If the file will not open, print exactly:
 //       Error: could not open file <fileName>
 //     and return false.
@@ -78,7 +79,8 @@ bool Adventure::load(const std::string& fileName) {
     tree_.setRoot(readScene(file, "START"));
 }
 
-// TODO 11: read ONE scene and everything below it. Return it.
+// TODO 11: Fix
+// Read ONE scene and everything below it. Return it.
 //   - Read SCENE, HP, LOOT, ITEM, and CHOICES with readField, in that order.
 //   - If CHOICES is below 0 or above Scene<Moment>::MAX_CHOICES, print exactly:
 //       Error: scene "<scene text>" has <n> choices. The limit is 3.
@@ -111,7 +113,8 @@ Scene<Moment>* Adventure::readScene(std::ifstream& in, const std::string& label)
 
 // ===================== PLAYING =====================
 
-// TODO 12: ask the player to pick a choice from 1 to numChoices.
+// TODO 12: Fix
+// Ask the player to pick a choice from 1 to numChoices.
 //   - Print "Your choice: " (no newline) and read a whole line.
 //   - If the line is not a valid number in range, print exactly:
 //       Please type a number from 1 to <numChoices>.
@@ -130,7 +133,8 @@ int Adventure::askChoice(int numChoices) {
     return 0;
 }
 
-// TODO 13: play the story once from the start.
+// TODO 13: Fix
+// Play the story once from the start.
 // Every time the player ENTERS a scene, in this order:
 //   1. Add its HP change to hp and its loot to loot.
 //   2. Print a line of 40 dashes, then the scene text.
@@ -189,7 +193,8 @@ void Adventure::play() {
 
 // ===================== ANALYZING =====================
 
-// TODO 14: print exactly three lines:
+// TODO 14: Fix
+// Print exactly three lines:
 //   Scenes: <count>
 //   Endings: <count>
 //   Longest playthrough: <height> choices
@@ -199,14 +204,16 @@ void Adventure::printStats() const {
     std::cout << "Longest playthrough: " << tree_.height() << " choices" << std::endl;
 }
 
-// TODO 15: print every ending in the story, one per line.
+// TODO 15: Fix
+// Print every ending in the story, one per line.
 void Adventure::printSpoilers() const {
     for (int i = 0; i < tree_.countEndings(); i++) {
         //
     }
 }
 
-// TODO 16: print every ending below scene.
+// TODO 16: Fix
+// Print every ending below scene.
 // path holds the choice numbers taken to reach scene, like "2-1".
 // Each ending prints as:
 //   Path <path>: <scene text>
@@ -216,7 +223,8 @@ void Adventure::printEndings(Scene<Moment>* scene, const std::string& path) cons
     //
 }
 
-// TODO 17: the greedy advisor.
+// TODO 17: Fix
+// The greedy advisor.
 // Start at the first scene with startHp_ and 0 loot.
 // Enter scenes the same way play does (add HP and loot).
 // Stop when hp is 0 or less, or you reach an ending.
@@ -231,7 +239,8 @@ void Adventure::greedyRun() const {
     //
 }
 
-// TODO 18: the best total loot you can collect from scene down to an ending,
+// TODO 18: Fix
+// The best total loot you can collect from scene down to an ending,
 // arriving at scene with hp health and having taken path to get here.
 //   - Return -1 if every way down from here kills you.
 //   - Put the path of the best run into bestPath.
@@ -241,7 +250,8 @@ int Adventure::bestLoot(Scene<Moment>* scene, int hp, const std::string& path, s
     //
 }
 
-// TODO 19: the optimal advisor. Use bestLoot from the first scene.
+// TODO 19: Fix
+// The optimal advisor. Use bestLoot from the first scene.
 // Print:
 //   Optimal advisor
 //     Path: <path>
